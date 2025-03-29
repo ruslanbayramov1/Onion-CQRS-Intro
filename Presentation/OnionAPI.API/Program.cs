@@ -12,6 +12,7 @@ builder.Services.AddNpgSql();
 builder.Services.AddPersistenceServices();
 builder.Services.AddAutoMapper();
 builder.Services.AddValidation();
+builder.Services.AddMediatr();
 
 var app = builder.Build();
 
