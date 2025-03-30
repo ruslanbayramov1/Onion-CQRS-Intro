@@ -10,9 +10,9 @@ namespace OnionAPI.Persistence.Implements;
 
 public class ProductService : IProductService
 {
-    private readonly OnionApiDbContext context;
+    private readonly AppPostgreDbContext context;
     private readonly IMapper mapper;
-    public ProductService(OnionApiDbContext context, IMapper mapper)
+    public ProductService(AppPostgreDbContext context, IMapper mapper)
     {
         this.context = context;
         this.mapper = mapper;

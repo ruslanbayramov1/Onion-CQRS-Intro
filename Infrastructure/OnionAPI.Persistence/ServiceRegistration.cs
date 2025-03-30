@@ -11,7 +11,7 @@ public static class ServiceRegistration
 {
     public static IServiceCollection AddNpgSql(this IServiceCollection services)
     {
-        services.AddDbContext<OnionApiDbContext>(opt =>
+        services.AddDbContext<AppPostgreDbContext>(opt =>
         {
             opt.UseNpgsql(ConfigurationHelper.GetString("Postgres"));
         });

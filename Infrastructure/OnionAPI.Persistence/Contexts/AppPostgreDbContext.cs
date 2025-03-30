@@ -4,9 +4,9 @@ using OnionAPI.Domain.Entities.Common;
 
 namespace OnionAPI.Persistence.Contexts;
 
-public class OnionApiDbContext : DbContext
+public class AppPostgreDbContext : DbContext
 {
-    public OnionApiDbContext(DbContextOptions opt) : base(opt)
+    public AppPostgreDbContext(DbContextOptions opt) : base(opt)
     {
     }
 
@@ -15,7 +15,7 @@ public class OnionApiDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(OnionApiDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppPostgreDbContext).Assembly);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

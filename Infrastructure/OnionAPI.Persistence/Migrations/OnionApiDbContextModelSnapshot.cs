@@ -10,7 +10,7 @@ using OnionAPI.Persistence.Contexts;
 
 namespace OnionAPI.Persistence.Migrations
 {
-    [DbContext(typeof(OnionApiDbContext))]
+    [DbContext(typeof(AppPostgreDbContext))]
     partial class OnionApiDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
