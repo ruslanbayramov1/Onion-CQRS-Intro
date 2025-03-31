@@ -5,15 +5,15 @@ namespace OnionAPI.Application.Features.Queries.GetAllProduct;
 
 public class GetAllProductHandler : IRequestHandler<GetAllProductRequest, GetAllProductResponse>
 {
-    private readonly IProductService productService;
-    public GetAllProductHandler(IProductService productService)
+    private readonly IProductElasticService productElasticService;
+    public GetAllProductHandler(IProductElasticService productElasticService)
     {
-        this.productService = productService;
+        this.productElasticService = productElasticService;
     }
     
     public async Task<GetAllProductResponse> Handle(GetAllProductRequest request, CancellationToken cancellationToken)
     {
-        var data = await productService.GetAllAsync();
+        var data = await productElasticService.GetAllAsync();
 
         return new GetAllProductResponse
         {

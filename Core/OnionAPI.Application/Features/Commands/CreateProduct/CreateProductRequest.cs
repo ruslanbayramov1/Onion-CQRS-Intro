@@ -1,9 +1,10 @@
 ﻿using MediatR;
-using OnionAPI.Application.DTOs.Products;
 
 namespace OnionAPI.Application.Features.Commands.CreateProduct;
 
 public class CreateProductRequest : IRequest<CreateProductResponse>
 {
-    public ProductCreateDto Product { get; set; }
+    public string Name { get; set; }
+    public int Stock { get; set; }
+    public long Price { get; set; }
 }

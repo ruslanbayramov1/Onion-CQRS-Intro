@@ -25,9 +25,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseGlobalExceptionHandler();
+app.UseElasticSeedIndexes();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+// SABAH BUTUN HERSEYI IMPLEMENT EDIB BITIRIRIK

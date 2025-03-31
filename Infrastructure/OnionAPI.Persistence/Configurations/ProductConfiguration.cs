@@ -16,10 +16,10 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasDefaultValue(false);
 
         // default value on postgresql where new entity added
-        builder
-            .Property(x => x.CreatedAt)
-            .HasDefaultValueSql("now()")
-            .ValueGeneratedOnAdd();
+        //builder
+        //    .Property(x => x.CreatedAt)
+        //    .HasDefaultValueSql("now()")
+        //    .ValueGeneratedOnAdd();
 
         // global filter
         builder

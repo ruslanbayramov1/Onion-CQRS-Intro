@@ -2,11 +2,10 @@
 
 namespace OnionAPI.Application.Interfaces;
 
-public interface IProductService
+public interface IProductElasticService
 {
     Task<List<ProductGetDto>> GetAllAsync();
     Task<ProductGetDto> GetByIdAsync(Guid id);
-    Task<Guid> AddAsync(ProductCreateDto dto);
-    Task UpdateAsync(Guid id, ProductUpdateDto dto);
-    Task RemoveAsync(Guid id);
+    Task CreateAsync(ProductCreateDto dto, Guid productId);
+    Task DeleteAsync(Guid id);
 }

@@ -8,17 +8,17 @@ using OnionAPI.Persistence.Contexts;
 
 namespace OnionAPI.Persistence.Implements;
 
-public class ProductService : IProductService
+public class ProductPostgreService : IProductPostgreService
 {
     private readonly AppPostgreDbContext context;
     private readonly IMapper mapper;
-    public ProductService(AppPostgreDbContext context, IMapper mapper)
+    public ProductPostgreService(AppPostgreDbContext context, IMapper mapper)
     {
         this.context = context;
         this.mapper = mapper;
     }
 
-    public async Task<Guid> AddAsync(ProductCreateDto dto)
+    public async Task<Guid> CreateAsync(ProductCreateDto dto)
     {
         var entity = mapper.Map<Product>(dto);
         await context.Products.AddAsync(entity);
@@ -44,7 +44,7 @@ public class ProductService : IProductService
         return data;
     }
 
-    public async Task RemoveAsync(Guid id)
+    public async Task DeleteAsync(Guid id)
     {
         var entity = await getById(id);
         context.Remove(entity);

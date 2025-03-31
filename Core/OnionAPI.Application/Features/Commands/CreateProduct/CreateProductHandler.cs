@@ -1,18 +1,28 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
+using OnionAPI.Application.DTOs.Products;
 using OnionAPI.Application.Interfaces;
 
 namespace OnionAPI.Application.Features.Commands.CreateProduct;
 
 public class CreateProductHandler : IRequestHandler<CreateProductRequest, CreateProductResponse>
 {
-    private readonly IProductService productService;
-    public CreateProductHandler(IProductService productService)
+    private readonly IProductPostgreService productPostgreService;
+    private readonly IProductElasticService productElasticService;
+    private readonly IMapper mapper;
+    public CreateProductHandler(IProductPostgreService productService, IProductElasticService productElasticService, IMapper mapper)
     {
-        this.productService = productService;
+        this.productPostgreService = productService;
+        this.productElasticService = productElasticService;
+        this.mapper = mapper;
     }
     public async Task<CreateProductResponse> Handle(CreateProductRequest request, CancellationToken cancellationToken)
     {
-        var productId = await productService.AddAsync(request.Product);
+        var dto = mapper.Map<ProductCreateDto>(request);
+        dto.CreatedAt = DateTime.UtcNow;
+
+        var productId = await productPostgreService.CreateAsync(dto);
+        await productElasticService.CreateAsync(dto, productId);
 
         return new CreateProductResponse
         {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using OnionAPI.Application.DTOs.Products;
+using OnionAPI.Application.Features.Commands.CreateProduct;
 using OnionAPI.Domain.Entities;
 
 namespace OnionAPI.Application.Profiles;
@@ -11,5 +12,7 @@ public class ProductProfile : Profile
         CreateMap<ProductCreateDto, Product>();
         CreateMap<Product, ProductGetDto>();
         CreateMap<ProductUpdateDto, Product>();
+
+        CreateMap<CreateProductRequest, ProductCreateDto>();
     }
 }
