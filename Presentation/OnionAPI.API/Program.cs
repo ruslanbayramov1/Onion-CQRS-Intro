@@ -32,5 +32,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-// SABAH BUTUN HERSEYI IMPLEMENT EDIB BITIRIRIK

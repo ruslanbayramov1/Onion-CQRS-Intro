@@ -29,11 +29,6 @@ public class AppPostgreDbContext : DbContext
                 case EntityState.Modified:
                     entity.Entity.UpdatedAt = DateTime.UtcNow;
                     break;
-                case EntityState.Deleted:
-                    entity.Entity.RemovedAt = DateTime.UtcNow;
-                    entity.Entity.IsDeleted = true;
-                    entity.State = EntityState.Modified; // do not delete, but just moddify
-                    break;
             }
         }
 

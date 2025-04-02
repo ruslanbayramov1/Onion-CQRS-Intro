@@ -8,5 +8,5 @@ public interface IProductPostgreService
     Task<ProductGetDto> GetByIdAsync(Guid id);
     Task<Guid> CreateAsync(ProductCreateDto dto);
     Task UpdateAsync(Guid id, ProductUpdateDto dto);
-    Task DeleteAsync(Guid id);
+    Task DeleteAsync(Guid productId, ProductDeleteDto dto);
 }

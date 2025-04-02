@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using OnionAPI.Application.DTOs.Products;
 using OnionAPI.Application.Features.Commands.CreateProduct;
+using OnionAPI.Application.Features.Commands.DeleteProduct;
+using OnionAPI.Application.Features.Commands.UpdateProduct;
 using OnionAPI.Application.Features.Queries.GetAllProduct;
 using OnionAPI.Application.Features.Queries.GetByIdProduct;
 using OnionAPI.Application.Interfaces;
@@ -36,7 +38,6 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPost]
-    [Route("[action]")]
     public async Task<IActionResult> PostAsync(CreateProductRequest req)
     {
         var resp = await mediator.Send(req);
@@ -44,10 +45,9 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPut]
-    [Route("{productId:guid}")]
-    public async Task<IActionResult> UpdateAsync(Guid productId, ProductUpdateDto dto)
+    public async Task<IActionResult> UpdateAsync(UpdateProductRequest req)
     {
-        await productService.UpdateAsync(productId, dto);
+        var resp = await mediator.Send(req);
         return Created();
     }
 
@@ -55,7 +55,7 @@ public class ProductsController : ControllerBase
     [Route("{productId:guid}")]
     public async Task<IActionResult> DeleteAsync(Guid productId)
     {
-        await productService.DeleteAsync(productId);
+        var resp = await mediator.Send(new DeleteProductRequest() { Id = productId });
         return NoContent();
     }
 }

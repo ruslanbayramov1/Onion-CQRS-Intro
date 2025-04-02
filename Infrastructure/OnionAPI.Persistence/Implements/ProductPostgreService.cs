@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Elastic.Clients.Elasticsearch;
 using Microsoft.EntityFrameworkCore;
 using OnionAPI.Application.DTOs.Products;
 using OnionAPI.Application.Interfaces;
@@ -44,10 +45,11 @@ public class ProductPostgreService : IProductPostgreService
         return data;
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task DeleteAsync(Guid productId, ProductDeleteDto dto)
     {
-        var entity = await getById(id);
-        context.Remove(entity);
+        var entity = await getById(productId);
+        mapper.Map(dto, entity);
+        context.Update(entity);
         await context.SaveChangesAsync();
     }
 
@@ -70,7 +72,7 @@ public class ProductPostgreService : IProductPostgreService
             Price = x.Price,
             Stock = x.Stock,
             IsDeleted = x.IsDeleted,
-            RemovedAt = x.RemovedAt,
+            DeletedAt = x.DeletedAt,
             UpdatedAt = x.UpdatedAt
         }).FirstOrDefaultAsync();
 
