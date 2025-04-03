@@ -1,7 +1,7 @@
 ﻿namespace OnionAPI.Application.DTOs.Products;
 
-public class ProductDeleteDto
+public record ProductDeleteDto
 {
-    public DateTime DeletedAt { get; set; } = DateTime.UtcNow;
-    public bool IsDeleted { get; set; }
+    public DateTime DeletedAt { get; init; } = DateTime.UtcNow;
+    public bool IsDeleted { get; init; }
 }
