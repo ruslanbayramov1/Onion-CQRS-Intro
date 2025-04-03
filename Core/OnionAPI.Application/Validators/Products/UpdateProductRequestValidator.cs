@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using OnionAPI.Application.DTOs.Products;
+using OnionAPI.Application.Features.Commands.UpdateProduct;
 using OnionAPI.Application.Settings;
 
 namespace OnionAPI.Application.Validators.Products;
 
-public class ProductCreateDtoValidator : AbstractValidator<ProductCreateDto>
+public class UpdateProductRequestValidator : AbstractValidator<UpdateProductRequest>
 {
-    public ProductCreateDtoValidator()
+    public UpdateProductRequestValidator()
     {
         RuleFor(x => x.Name)
             .MinimumLength(ProductSetting.MinNameLength)

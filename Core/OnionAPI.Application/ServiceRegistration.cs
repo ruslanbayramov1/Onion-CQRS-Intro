@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace OnionAPI.Application;
@@ -22,7 +21,7 @@ public static class ServiceRegistration
 
     public static IServiceCollection AddMediatr(this IServiceCollection services)
     {
-        services.AddMediatR(typeof(ServiceRegistration).Assembly);
+        services.AddMediatR(opt => opt.RegisterServicesFromAssembly(typeof(ServiceRegistration).Assembly));
         return services;
     }
 }
