@@ -71,7 +71,7 @@ public class ProductElasticService : IProductElasticService
 
         return dto;
     }
-
+    
     public async Task UpdateAsync(ProductUpdateDto dto, Guid productId)
     {
         Product product = mapper.Map<Product>(dto);
